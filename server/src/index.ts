@@ -6,20 +6,22 @@ import authRouter from './routes/auth'
 dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
 
-// Routes
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' })
 })
 
 app.use('/api/auth', authRouter)
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+// Only start server if not in test mode
+if (process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || 3000
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  })
+}
 
 export default app
