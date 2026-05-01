@@ -1,11 +1,17 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import LoginPage from '@/pages/LoginPage'
+import RegisterPage from '@/pages/RegisterPage'
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold text-gray-800">SpendWise</h1>
-        <p className="text-gray-500 mt-2">Personal Finance Tracker — coming soon</p>
-      </div>
-    </div>
+   <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/dashboard" element={<div className="p-8 text-xl font-semibold">Dashboard — coming in SW-006</div>} />
+    </Routes>
+   </BrowserRouter>
   )
 }
 
