@@ -14,6 +14,11 @@ router.post('/register', async (req: Request, res: Response) => {
       res.status(400).json({ message: 'All fields are required' })
       return
     }
+    if(name.length < 3)
+    {
+      res.status(400).json({ message: 'Name cannot be less than 3 Alphabets' })
+      return
+    }
 
     const existingUser = await prisma.user.findUnique({
       where: { email }
